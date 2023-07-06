@@ -1,0 +1,149 @@
+@import "./variables";
+
+//========== reuseable code =========================
+
+@mixin transition-ease {
+  transition: all 0.3s ease-in-out;
+}
+@mixin transition-ease-slow {
+  transition: all 0.4s ease-in-out;
+}
+@mixin transition-ease-fast {
+  transition: all 0.2s ease-in-out;
+}
+
+// ---------------- default btn --------------------------
+@mixin default-btn-styles {
+  padding: 10px 20px;
+  border: solid 2px $color-primary;
+  text-transform: capitalize;
+  color: $color-primary;
+  cursor: pointer;
+  min-width: 150px;
+
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 3px 0px,
+    rgba(0, 0, 0, 0.15) 0px 1px 5px 0px;
+  float: right;
+  background-color: transparent;
+
+  &:active {
+    transform: scale(0.99);
+    box-shadow: none;
+  }
+
+  @include mobile {
+    font-size: 0.7rem;
+  }
+
+  @include tablet {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+  @include pc {
+  }
+}
+
+// -------------------------flex center----------------------------------
+@mixin flex-centralize {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+// -------------------------flex row----------------------------------
+@mixin flex-row {
+  display: flex;
+  align-items: center;
+}
+@mixin flex-row-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-row-space-around {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+@mixin flex-row-space-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+// -------------------------flex culomn----------------------------------
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+}
+@mixin flex-column-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+@mixin flex-column-space-around {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+@mixin flex-column-space-between {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+// -------------------------position absolute----------------------------------
+@mixin position-absolute-top-left {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+@mixin position-absolute-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+//========== media query mixin=========================
+
+@mixin mobile {
+  @media screen and (min-width: $breakpoint-sm) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media screen and (min-width: $breakpoint-md) {
+    @content;
+  }
+}
+
+@mixin pc {
+  @media screen and (min-width: $breakpoint-lg) {
+    @content;
+  }
+}
+
+//================animation==============
+@keyframes shake {
+  0% {
+    transform: rotate(25deg);
+  }
+  20% {
+    transform: rotate(-25deg);
+  }
+  40% {
+    transform: rotate(25deg);
+  }
+  60% {
+    transform: rotate(-25deg);
+  }
+  80% {
+    transform: rotate(25deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
