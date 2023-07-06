@@ -3,11 +3,65 @@
 .header {
   width: 100%;
   height: 80px;
-  display: flex;
-  align-items: center;
-  justify-content: right;
+  @include flex-row-space-between;
   padding: 2rem;
 
+  .menu__btn {
+    &:active {
+      transform: scale(0.98);
+    }
+  }
+  .menu {
+    border: solid;
+    width: 250px;
+    background-color: $color-primary;
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    padding: 2rem;
+    padding-top: 4rem;
+    display: flex;
+    justify-content: center;
+    transform: translateX(280px);
+    @include transition-ease;
+    z-index: 100;
+
+    div {
+      &:nth-child(2) {
+        margin-top: 2rem;
+      }
+      div {
+        color: white;
+        margin-top: 2rem;
+        @include flex-row-space-between;
+        align-items: center;
+        // border: solid;
+        h4 {
+          color: white;
+          margin-right: 10px;
+          &:hover {
+            color: $color-secondary;
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+  }
+  .isMenu {
+    transform: translateX(0px);
+  }
+  .menu__close {
+    position: fixed;
+    top: 25px;
+    right: 25px;
+    @include flex-centralize;
+    color: white;
+    @include transition-ease;
+    &:hover {
+      transform: rotate(90deg);
+    }
+  }
   div {
     &:hover {
       cursor: pointer;
@@ -15,5 +69,14 @@
   }
   .active {
     animation: 1s shake forwards;
+  }
+
+  .menu__close__div {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 99;
   }
 }

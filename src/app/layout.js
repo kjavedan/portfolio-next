@@ -1,6 +1,7 @@
 "use client";
 
 import Header from "./components/Header";
+import { LevelContextProvider } from "./context/LevelContext";
 import { SoundContextProvider } from "./context/SoundContext";
 import "./globals.scss";
 import { Poppins, ABeeZee } from "next/font/google";
@@ -29,8 +30,10 @@ export default function RootLayout({ children }) {
     <html lang="en" className={`${poppins.variable} ${aBeeZee.variable}`}>
       <body>
         <SoundContextProvider>
-          <Header />
-          {children}
+          <LevelContextProvider>
+            <Header />
+            {children}
+          </LevelContextProvider>
         </SoundContextProvider>
       </body>
     </html>
