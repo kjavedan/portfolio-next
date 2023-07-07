@@ -1,12 +1,6 @@
 import React, { useContext, useState } from "react";
 import styles from "./styles.module.scss";
-import {
-  CloseSquare,
-  HambergerMenu,
-  Key,
-  Lock1,
-  VolumeMute,
-} from "iconsax-react";
+import { CloseSquare, Key, Lock1, More, VolumeMute } from "iconsax-react";
 import { SoundContext } from "../context/SoundContext";
 import { LevelContext } from "../context/LevelContext";
 
@@ -34,7 +28,7 @@ export default function Header() {
         {sound ? <VolumeMute /> : <VolumeMute variant="Broken" />}
       </div>
       <div onClick={() => setIsMenu(true)} className={styles.menu__Btn}>
-        <HambergerMenu variant="bold" />
+        <More />
       </div>
       <div className={`${styles.menu} ${isMenu ? styles.isMenu : ""}`}>
         <div className={styles.menu__close} onClick={() => setIsMenu(false)}>

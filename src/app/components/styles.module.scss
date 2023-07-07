@@ -5,6 +5,11 @@
   height: 80px;
   @include flex-row-space-between;
   padding: 2rem;
+  margin: 0 auto;
+
+  @include pc {
+    width: 900px;
+  }
 
   .menu__btn {
     &:active {
