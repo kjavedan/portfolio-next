@@ -1,18 +1,11 @@
 "use client";
 
 import Header from "./components/Header";
-import { LevelContextProvider } from "./context/LevelContext";
-import { SoundContextProvider } from "./context/SoundContext";
+import { LevelContextProvider } from "../context/LevelContext";
+import { SoundContextProvider } from "../context/SoundContext";
 import "./globals.scss";
-import {
-  Poppins,
-  ABeeZee,
-  Eater,
-  Gupter,
-  Bangers,
-  Dokdo,
-  Griffy,
-} from "next/font/google";
+import { Poppins, ABeeZee, Bangers, Dokdo, Griffy } from "next/font/google";
+import styles from "./page.module.scss";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -59,7 +52,7 @@ export default function RootLayout({ children }) {
   return (
     <html
       lang="en"
-      className={`${poppins.variable} ${aBeeZee.variable} ${bangers.variable} ${dokdo.variable} ${griffy.variable}`}
+      className={`${poppins.variable} ${aBeeZee.variable} ${bangers.variable} ${dokdo.variable} ${griffy.variable} ${styles.wrapper}`}
     >
       <body>
         <SoundContextProvider>

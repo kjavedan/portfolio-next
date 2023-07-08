@@ -1,8 +1,9 @@
 import React, { useContext, useState } from "react";
 import styles from "./styles.module.scss";
-import { CloseSquare, Key, Lock1, More, VolumeMute } from "iconsax-react";
-import { SoundContext } from "../context/SoundContext";
-import { LevelContext } from "../context/LevelContext";
+import { CloseSquare, More, VolumeMute } from "iconsax-react";
+import { SoundContext } from "../../context/SoundContext";
+import { LevelContext } from "../../context/LevelContext";
+import Link from "next/link";
 
 export default function Header() {
   //CONTEXT
@@ -23,7 +24,7 @@ export default function Header() {
   };
 
   return (
-    <div className={styles.header}>
+    <div className={styles.nav}>
       <div onClick={handleClick} className={isActive ? styles.active : ""}>
         {sound ? <VolumeMute /> : <VolumeMute variant="Broken" />}
       </div>
@@ -36,26 +37,46 @@ export default function Header() {
         </div>
 
         <div>
+          <Link href={"/challenge1"} className={styles.link}>
+            <div>
+              <h4>challenge 1</h4>
+            </div>
+          </Link>
           <div>
-            <h4>challenge 1</h4>
+            <Link href={level >= 1 ? "/about" : ""} className={styles.link}>
+              {level >= 1 ? "🔓" : "🔒"}
+              <h4>About</h4>
+            </Link>
           </div>
           <div>
-            <h4>About</h4>
-            {level >= 1 ? <Key /> : <Lock1 />}
+            <Link
+              href={level >= 1 ? "/challenge2" : ""}
+              className={styles.link}
+            >
+              {level >= 1 ? "🔓" : "🔒"}
+              <h4>challenge 2</h4>
+            </Link>
           </div>
           <div>
-            <h4>challenge 2</h4>
+            <Link href={level >= 2 ? "/projects" : ""} className={styles.link}>
+              {level >= 2 ? "🔓" : "🔒"}
+              <h4>Projects</h4>
+            </Link>
           </div>
           <div>
-            <h4>Projects</h4>
-            {level >= 2 ? <Key /> : <Lock1 />}
+            <Link
+              href={level >= 2 ? "/challenge3" : ""}
+              className={styles.link}
+            >
+              {level >= 2 ? "🔓" : "🔒"}
+              <h4>challenge 3</h4>
+            </Link>
           </div>
           <div>
-            <h4>challenge 3</h4>
-          </div>
-          <div>
-            <h4>Contact me</h4>
-            {level >= 3 ? <Key /> : <Lock1 />}
+            <Link href={level >= 3 ? "/contact" : ""} className={styles.link}>
+              {level >= 3 ? "🔓" : "🔒"}
+              <h4>Contact me</h4>
+            </Link>
           </div>
         </div>
       </div>
