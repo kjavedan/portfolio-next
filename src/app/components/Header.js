@@ -4,11 +4,20 @@ import { CloseSquare, More, VolumeMute } from "iconsax-react";
 import { SoundContext } from "../../context/SoundContext";
 import { LevelContext } from "../../context/LevelContext";
 import Link from "next/link";
+import swipeSound from "../../assets/sounds/swipe.wav";
+import muteSound from "../../assets/sounds/mute.wav";
+import unmuteSound from "../../assets/sounds/unmute.wav";
+import useSound from "use-sound";
 
 export default function Header() {
   //CONTEXT
   const { sound, toggleSound } = useContext(SoundContext);
   const { level } = useContext(LevelContext);
+
+  //SOUNDS
+  const [playSwipeSound] = useSound(swipeSound);
+  const [playMuteSound] = useSound(muteSound);
+  const [playUnmuteSound] = useSound(unmuteSound);
 
   //STATE
   const [isMenu, setIsMenu] = useState(false);
@@ -18,9 +27,20 @@ export default function Header() {
   const handleClick = () => {
     toggleSound();
     setIsActive(true);
+    sound ? playMuteSound() : playUnmuteSound();
     setTimeout(() => {
       setIsActive(false);
     }, 1000);
+  };
+
+  const handleMenuBtnClick = () => {
+    setIsMenu(true);
+    sound && playSwipeSound();
+  };
+
+  const handleCloseMenuBtn = () => {
+    setIsMenu(false);
+    sound && playSwipeSound();
   };
 
   return (
@@ -28,15 +48,20 @@ export default function Header() {
       <div onClick={handleClick} className={isActive ? styles.active : ""}>
         {sound ? <VolumeMute /> : <VolumeMute variant="Broken" />}
       </div>
-      <div onClick={() => setIsMenu(true)} className={styles.menu__Btn}>
+      <div onClick={handleMenuBtnClick} className={styles.menu__Btn}>
         <More />
       </div>
       <div className={`${styles.menu} ${isMenu ? styles.isMenu : ""}`}>
-        <div className={styles.menu__close} onClick={() => setIsMenu(false)}>
+        <div className={styles.menu__close} onClick={handleCloseMenuBtn}>
           <CloseSquare />
         </div>
 
         <div>
+          <Link href={"/"} style={{ textDecoration: "none" }}>
+            <div>
+              <h4 className={styles.logo}>KJ</h4>
+            </div>
+          </Link>
           <Link href={"/challenge1"} className={styles.link}>
             <div>
               <h4>challenge 1</h4>
@@ -83,7 +108,7 @@ export default function Header() {
       {isMenu && (
         <div
           className={styles.menu__close__div}
-          onClick={() => setIsMenu(false)}
+          onClick={handleCloseMenuBtn}
         ></div>
       )}
     </div>

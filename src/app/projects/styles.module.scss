@@ -1,0 +1,81 @@
+@import "../mixins";
+
+.main {
+  padding: 2rem 2rem;
+  padding-bottom: 10rem;
+
+  .projects__container {
+    padding-top: 1rem;
+    display: grid;
+    gap: 20px;
+    .project {
+      height: 130px;
+      display: flex;
+
+      &:hover {
+        cursor: pointer;
+        .more {
+          transform: translateX(10px);
+        }
+      }
+
+      .image {
+        min-width: 120px;
+        height: 120px;
+
+        border-radius: 8px;
+        background-color: rgb(238, 238, 238);
+        @include flex-centralize;
+
+        img {
+          height: 90px;
+          width: auto;
+        }
+      }
+
+      .content {
+        padding-left: 10px;
+        width: 100%;
+
+        .title {
+          @include flex-row-space-between;
+          margin-top: 5px;
+          padding-right: 15px;
+
+          .more {
+            color: #7203ff;
+            @include transition-ease;
+          }
+        }
+        h5 {
+          margin-top: 10px;
+        }
+        p {
+          color: gray;
+          font-size: 13px;
+        }
+
+        @media screen and (max-width: 470px) {
+          h4 {
+            font-size: 14px;
+          }
+          h5 {
+            font-size: 12px;
+          }
+          p {
+            font-size: 9px;
+          }
+        }
+      }
+    }
+
+    @include pc {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  .next__btn {
+    button {
+      @include default-btn-styles;
+    }
+  }
+}

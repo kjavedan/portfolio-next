@@ -11,14 +11,28 @@ import playIcon from "../../assets/icons/playIcon.png";
 import pauseIcon from "../../assets/icons/pauseIcon.png";
 import checkCollision from "../../utils/collisionDetction";
 import { LevelContext } from "../../context/LevelContext";
+import { SoundContext } from "../../context/SoundContext";
 import Link from "next/link";
+import shootSound from "../../assets/sounds/shootFx.mp3";
+import collisionSound from "../../assets/sounds/gruntFx.mp3";
+import woriorOneGrunt from "../../assets/sounds/worior1grunt.mp3";
+import woriorTwoGrunt from "../../assets/sounds/worior2grunt.mp3";
+import playToggleSound from "../../assets/sounds/backSound.wav";
+import clickSound from "../../assets/sounds/click.wav";
+
+import useSound from "use-sound";
 
 export default function page({
   levelNumber,
   scoreToPassLevel,
   unlock,
+  challengeHint,
   levelBg,
   levelTarget,
+  levelWorior,
+  woriorSpriteFrame,
+  woriorSpriteWidth,
+  woriorSpriteHeight,
 }) {
   //VARIABLES
   const BULLET_SPEED = 10;
@@ -35,21 +49,37 @@ export default function page({
   const spriteSizeH = 77.6;
   const spriteSizeW = 123.8;
   const targetsSpriteFrame = 17;
+
   const screenWidth = window.innerWidth >= 900 ? 900 : window.innerWidth;
   const screenHeight = 400;
 
   const canvasRef = useRef(null);
   const targetsRef = useRef(null);
+  const woriorRef = useRef(null);
   const bulletRef = useRef(null);
   const explosionRef = useRef(null);
 
+  //SOUNDS
+  const [playShootingSound] = useSound(shootSound);
+  const [playCollisionSound] = useSound(collisionSound);
+  const [playWoriorOneGrunt] = useSound(woriorOneGrunt);
+  const [playWoriorTwoGrunt] = useSound(woriorTwoGrunt);
+  const [playGameToggleSound] = useSound(playToggleSound);
+  const [playClickSound] = useSound(clickSound);
+
   //CANVAS CONTEXT
   const { level, unlockLevel } = useContext(LevelContext);
+  const { sound } = useContext(SoundContext);
   const [ctx, setCtx] = useState("");
 
   //STATES
   const [spriteFrame, setSpriteFrame] = useState(0);
+  const [woriorOneSpriteFrame, setworiorOneSpriteFrame] =
+    useState(woriorSpriteFrame);
+  const [woriorTwoSpriteFrame, setworiorTwoSpriteFrame] = useState(0);
+
   const [image, setImage] = useState("");
+  const [woriorImage, setWoriorImage] = useState("");
   const [explosionImg, setExplosionImg] = useState("");
   const [bulletImg, setBulletImg] = useState("");
   const [bulletSpriteFrame, setBulletSpriteFrame] = useState(0);
@@ -57,8 +87,16 @@ export default function page({
   const [bulletPositionX, setBulletPostionX] = useState(
     screenWidth / 2 - bulletSpriteWidth + 20
   );
+
   const [objX, setObjX] = useState(-spriteWidth);
-  const [objY, setObjY] = useState(50);
+  const [objY, setObjY] = useState(40);
+
+  const [objX1, setObjX1] = useState(screenWidth + spriteWidth);
+  const [objY1, setObjY1] = useState(75);
+
+  const [objX2, setObjX2] = useState(-screenWidth);
+  const [objY2, setObjY2] = useState(150);
+
   const [particlesArray, setParticlesArray] = useState([]);
   const [gameStatus, setGameStatus] = useState(false);
   const [startPlay, setStartPlay] = useState(false);
@@ -70,19 +108,6 @@ export default function page({
   });
   const [collisionSpriteFrame, setCollisionSpriteFrame] = useState(0);
   const [levelScore, setlevelScore] = useState(0);
-  const [endsLevel, setEndsLevel] = useState(false);
-
-  // console.log(bulletPositionY);
-  // console.log(objX);
-  // console.log(spriteFrame);
-  // console.log(spriteSizeW);
-  // console.log(spriteSizeH);
-  // console.log(spriteWidth);
-  // console.log(spriteHeight);
-  // if (canvasRef.current) {
-  //   console.log(canvasRef.current);
-  // }
-  // console.log(canvasRef.current);
 
   //FUNCTIONS
   const animate = () => {
@@ -98,17 +123,52 @@ export default function page({
         spriteSizeH,
         objX,
         objY,
-        spriteWidth,
+        spriteWidth + 20,
         spriteHeight
       );
+      // worior 1 animation
+      ctx.drawImage(
+        woriorImage,
+        woriorOneSpriteFrame * woriorSpriteWidth,
+        0,
+        woriorSpriteWidth,
+        woriorSpriteHeight,
+        objX1,
+        objY1,
+        spriteWidth,
+        spriteHeight + 20
+      );
+
+      // worior 2 animation
+      if (levelNumber === 3) {
+        ctx.drawImage(
+          woriorImage,
+          woriorTwoSpriteFrame * woriorSpriteWidth,
+          141,
+          woriorSpriteWidth,
+          woriorSpriteHeight,
+          objX2,
+          objY2,
+          spriteWidth,
+          spriteHeight + 20
+        );
+      }
 
       //particals-------------------------------------
       handleParticles(
         ctx,
         spriteWidth,
         spriteHeight,
-        objX + (spriteWidth / 2 - 10),
+        objX + spriteWidth / 2,
         objY + spriteHeight - 8,
+        particlesArray
+      );
+      handleParticles(
+        ctx,
+        spriteWidth,
+        spriteHeight,
+        objX2 + spriteWidth / 2,
+        objY2 + spriteHeight - 8,
         particlesArray
       );
 
@@ -149,12 +209,14 @@ export default function page({
   const startShooting = () => {
     if (gameStatus && !shooting) {
       setShooting(true);
+      sound && playShootingSound();
     }
   };
 
   const handlePlay = () => {
     setGameStatus(!gameStatus);
     setStartPlay(!startPlay);
+    sound && playGameToggleSound();
   };
   // useEffect (1) getting and settting the canvas and context
   useEffect(() => {
@@ -163,6 +225,7 @@ export default function page({
       canvas.width = screenWidth;
       canvas.height = screenHeight;
       setImage(targetsRef.current);
+      setWoriorImage(woriorRef.current);
       setExplosionImg(explosionRef.current);
       const bulletImage = bulletRef.current;
       setCtx(canvas.getContext("2d"));
@@ -210,17 +273,45 @@ export default function page({
   //useEffect 9 setting the X corrdination of the objX
   useEffect(() => {
     let timeId;
+
     if (gameStatus && objX <= screenWidth) {
       timeId = setInterval(() => {
         setObjX((objX) => objX + 5);
+        if (levelNumber >= 2 && objX1 >= -woriorSpriteWidth) {
+          setObjX1((objX1) => objX1 - 4);
+        }
+        if (levelNumber >= 3 && objX2 <= screenWidth) {
+          setObjX2((objX2) => objX2 + 15);
+        }
       }, 40);
     }
 
-    // switching targets frames
+    // switching targets 1 frames
     if (spriteFrame >= targetsSpriteFrame) setSpriteFrame(0);
     setSpriteFrame((PS) => PS + 1);
 
     if (objX > screenWidth) setObjX(-spriteSizeW);
+
+    //level 2 target frams
+    if (levelNumber >= 2 && !(objX1 >= -woriorSpriteWidth)) {
+      setObjX1(screenWidth + woriorSpriteWidth);
+    }
+    if (levelNumber >= 2 && woriorOneSpriteFrame <= 0) {
+      setworiorOneSpriteFrame(woriorSpriteFrame);
+    } else {
+      setworiorOneSpriteFrame((prevFrame) => prevFrame - 1);
+    }
+
+    //level 3 target frams
+    if (levelNumber >= 3 && objX2 > screenWidth) {
+      setObjX2(-woriorSpriteWidth);
+    }
+    if (levelNumber >= 3 && woriorTwoSpriteFrame < woriorSpriteFrame) {
+      setworiorTwoSpriteFrame((prevFrame) => prevFrame + 1);
+    } else {
+      setworiorTwoSpriteFrame(0);
+    }
+
     return () => {
       clearInterval(timeId);
     };
@@ -247,7 +338,49 @@ export default function page({
         setlevelScore((score) => score + 1);
         setIsCollied(true);
         setCollisionInfo({ collisionX: objX, collisionY: objY });
-        // gameSound && playCollisionFx();
+        sound && playCollisionSound();
+      }
+      if (
+        levelNumber >= 2 &&
+        checkCollision(
+          objX1,
+          objY1,
+          spriteHeight,
+          spriteWidth,
+          bulletPositionX,
+          bulletPositionY,
+          bulletSpriteWidth,
+          bulletSpriteHeight
+        )
+      ) {
+        setShooting(false);
+        setBulletPostionY(320);
+        setObjX1(screenWidth + spriteWidth);
+        setlevelScore((score) => score - 1);
+        setIsCollied(true);
+        setCollisionInfo({ collisionX: objX1, collisionY: objY1 });
+        sound && playWoriorOneGrunt();
+      }
+      if (
+        levelNumber >= 3 &&
+        checkCollision(
+          objX2,
+          objY2,
+          spriteHeight,
+          spriteWidth,
+          bulletPositionX,
+          bulletPositionY,
+          bulletSpriteWidth,
+          bulletSpriteHeight
+        )
+      ) {
+        setShooting(false);
+        setBulletPostionY(320);
+        setObjX2(-spriteWidth);
+        setlevelScore((score) => score - 1);
+        setIsCollied(true);
+        setCollisionInfo({ collisionX: objX2, collisionY: objY2 });
+        sound && playWoriorTwoGrunt();
       }
     }
   }, [
@@ -303,9 +436,9 @@ export default function page({
   return (
     <div>
       <div className={styles.header}>
-        <h2>challenge 1</h2>
+        <h2>challenge {levelNumber}</h2>
         <div className={styles.info}>
-          <p>You need to score {scoreToPassLevel} in order to pass the level</p>
+          <p>{challengeHint}</p>
           <h4>score: {levelScore}</h4>
         </div>
       </div>
@@ -321,6 +454,14 @@ export default function page({
           <Image
             ref={targetsRef}
             src={levelTarget}
+            loading="eager"
+            alt=""
+            style={{ display: "none" }}
+          />
+          {/* worior image */}
+          <Image
+            ref={woriorRef}
+            src={levelWorior}
             loading="eager"
             alt=""
             style={{ display: "none" }}
@@ -366,7 +507,7 @@ export default function page({
             <span>section is unlocked 🔓</span>
           </div>
           <Link href={`/${unlock}`}>
-            <button>{unlock}</button>
+            <button onClick={() => playClickSound()}>{unlock}</button>
           </Link>
         </div>
       )}

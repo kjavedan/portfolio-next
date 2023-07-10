@@ -1,36 +1,71 @@
-import React from "react";
+"use client";
+import React, { useContext } from "react";
 import styles from "./styles.module.scss";
 import Link from "next/link";
+import useSound from "use-sound";
+import clickSound from "../../assets/sounds/click.wav";
+import Experience from "../components/Experience";
+import { Canvas, useThree } from "@react-three/fiber";
+import { PerspectiveCamera } from "@react-three/drei";
+import { SoundContext } from "@/context/SoundContext";
+import { LevelContext } from "@/context/LevelContext";
+
+export const CustomCamera = () => {
+  const { camera } = useThree();
+  camera.position.set(0, 0.2, 1.75); // Set the desired camera position
+  camera.lookAt(0, 0, 0); // Point the camera towards the origin (0, 0, 0)
+  return null;
+};
 
 export default function page() {
+  //CONTEXT
+  const { sound } = useContext(SoundContext);
+  const { level } = useContext(LevelContext);
+
+  //SOUND
+  const [playClickSound] = useSound(clickSound);
+
+  //FUNCS
+  const handleClick = (link) => {
+    sound && playClickSound();
+  };
   return (
     <div className={styles.main}>
-      <div>
-        <h2>Well I’m Khaled.</h2>
-
-        <p>nice to meet you. 😊</p>
+      <div className={styles.avatar}>
+        <Canvas>
+          <CustomCamera />
+          <Experience page={"about"} />
+        </Canvas>
       </div>
-      <div className={styles.text__section}>
-        <h3>Boring </h3>
-        <p>
-          I Studied Software Engineer, And then became a Front-end Developer as
-          you can see. good one though.😎
-        </p>
-        <p>Currently I’m living in United Arab Emirates.</p>
-      </div>
+      <div className={styles.content}>
+        <div>
+          <h2>Well I’m Khaled.</h2>
+          <p>nice to meet you. 😊</p>
+        </div>
+        <div className={styles.text__section}>
+          <h3>me </h3>
+          <p>
+            <b>25 years old.</b> Studied Software Engineer, And then became a
+            Front-end Developer as you can see. good one though.😎
+          </p>
+          <p>
+            Currently I’m living in <b>United Arab Emirates.</b>
+          </p>
+        </div>
 
-      <div className={styles.text__section}>
-        <h3> Exciting </h3>
-        <p>
-          I think it’s enough talking about myself let me show you the projects
-          I have done.
-        </p>
-      </div>
+        <div className={styles.text__section}>
+          <h3> work </h3>
+          <p>
+            I think it’s enough talking about myself let me show you the
+            projects I have done.
+          </p>
+        </div>
 
-      <div className={styles.next__btn}>
-        <Link href={"/challenge2"}>
-          <button>Ok let's see</button>
-        </Link>
+        <div className={styles.next__btn}>
+          <Link href={level >= 1 ? "/challenge2" : ""}>
+            <button onClick={handleClick}>Ok let's see</button>
+          </Link>
+        </div>
       </div>
     </div>
   );
