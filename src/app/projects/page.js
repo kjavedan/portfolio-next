@@ -10,7 +10,15 @@ import { ArrowRight } from "iconsax-react";
 import { SoundContext } from "@/context/SoundContext";
 import { LevelContext } from "@/context/LevelContext";
 import { useRouter } from "next/navigation";
-import projectsData from "@/data/projectsData";
+import projectsData, { projectsInfo } from "@/data/projectsData";
+
+export const generateStaticParams = () => {
+  return projectsInfo.map((project) => {
+    return {
+      projectName: project.name,
+    };
+  });
+};
 
 export default function Page() {
   //NAVIGATINO
@@ -27,6 +35,9 @@ export default function Page() {
   const handleClick = (link) => {
     sound && playClickSound();
     router.push(`projects/${link}`);
+  };
+  const handleClickBtn = () => {
+    sound && playClickSound();
   };
 
   //JSX
@@ -61,7 +72,7 @@ export default function Page() {
       <div className={styles.projects__container}>{projectsElements}</div>
       <div className={styles.next__btn}>
         <Link href={level >= 2 ? "/challenge3" : ""}>
-          <button onClick={() => playClickSound()}>Ok let&apos;s see</button>
+          <button onClick={handleClickBtn}>contact</button>
         </Link>
       </div>
     </div>

@@ -59,7 +59,7 @@ export default function Header() {
         <div>
           <Link href={"/"} style={{ textDecoration: "none" }}>
             <div>
-              <h4 className={styles.logo}>KJ</h4>
+              <h4 className={styles.logo}>KJ .</h4>
             </div>
           </Link>
           <Link href={"/challenge1"} className={styles.link}>
@@ -68,38 +68,32 @@ export default function Header() {
             </div>
           </Link>
           <div>
-            <Link href={level >= 1 ? "/about" : ""} className={styles.link}>
-              {level >= 1 ? "🔓" : "🔒"}
+            <Link href={"/about"} className={styles.link}>
+              {"🔓"}
               <h4>About</h4>
             </Link>
           </div>
           <div>
-            <Link
-              href={level >= 1 ? "/challenge2" : ""}
-              className={styles.link}
-            >
-              {level >= 1 ? "🔓" : "🔒"}
+            <Link href={"/challenge2"} className={styles.link}>
+              {"🔓"}
               <h4>challenge 2</h4>
             </Link>
           </div>
           <div>
-            <Link href={level >= 2 ? "/projects" : ""} className={styles.link}>
-              {level >= 2 ? "🔓" : "🔒"}
+            <Link href={"/projects"} className={styles.link}>
+              {"🔓"}
               <h4>Projects</h4>
             </Link>
           </div>
           <div>
-            <Link
-              href={level >= 2 ? "/challenge3" : ""}
-              className={styles.link}
-            >
-              {level >= 2 ? "🔓" : "🔒"}
+            <Link href={"/challenge3"} className={styles.link}>
+              {"🔓"}
               <h4>challenge 3</h4>
             </Link>
           </div>
           <div>
-            <Link href={level >= 3 ? "/contact" : ""} className={styles.link}>
-              {level >= 3 ? "🔓" : "🔒"}
+            <Link href={"/contact"} className={styles.link}>
+              {"🔓"}
               <h4>Contact me</h4>
             </Link>
           </div>

@@ -31,37 +31,37 @@ export default function Page() {
           <div className={styles.links__container}>
             <ul>
               <li>
-                <a href="#">
+                <a href="https://www.instagram.com/k.javedan/">
                   <FontAwesomeIcon className={styles.fa} icon={faInstagram} />
                   <span> - Instagram</span>
                 </a>
               </li>
               <li>
-                <a href="#">
+                <a href="https://wa.me/00970502597949">
                   <FontAwesomeIcon className={styles.fa} icon={faWhatsapp} />
                   <span> - WhatsApp</span>
                 </a>
               </li>
               <li>
-                <a href="#">
+                <a href="https://www.linkedin.com/in/khaled-javedan-790b991b3/">
                   <FontAwesomeIcon className={styles.fa} icon={faLinkedin} />
                   <span> - LinkedIn</span>
                 </a>
               </li>
               <li>
-                <a href="#">
+                <a href="https://github.com/kjavedan">
                   <FontAwesomeIcon className={styles.fa} icon={faGithub} />
                   <span> - GitHub</span>
                 </a>
               </li>
               <li>
-                <a href="#">
+                <a href="https://gitlab.com/k.javedan">
                   <FontAwesomeIcon className={styles.fa} icon={faGitlab} />
                   <span> - GitLab</span>
                 </a>
               </li>
               <li>
-                <a href="#">
+                <a href="mailto:javedankhaled@gmail.com">
                   <FontAwesomeIcon className={styles.fa} icon={faGoogle} />
                   <span> - Email</span>
                 </a>

@@ -12,7 +12,7 @@ const ContextProvider = ({ children }) => {
   const [playGameWinSound] = useSound(winSound);
 
   //STATES
-  const [level, setLevel] = useState(4);
+  const [level, setLevel] = useState(0);
 
   const unlockLevel = (levelToUnlock) => {
     if (levelToUnlock > level) {

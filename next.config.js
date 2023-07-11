@@ -27,6 +27,19 @@ const nextConfig = {
             },
           },
         ],
+      },
+      {
+        test: /\.(pdf)$/i,
+        use: [
+          {
+            loader: "file-loader",
+            options: {
+              name: "[name].[ext]",
+              publicPath: "/_next/static/assets/cv/",
+              outputPath: "static/assets/cv/",
+            },
+          },
+        ],
       }
     );
 

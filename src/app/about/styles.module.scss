@@ -37,6 +37,25 @@
       h3 {
         margin-bottom: 10px;
       }
+
+      a {
+        text-decoration: underline;
+        margin-top: 1rem;
+        font-size: 1rem;
+        cursor: pointer;
+        color: $color-secondary;
+        @include flex-row;
+
+        .arrow {
+          @include transition-ease;
+          transform: translateX(0);
+        }
+        &:hover {
+          .arrow {
+            transform: translateX(10px);
+          }
+        }
+      }
     }
 
     .next__btn {

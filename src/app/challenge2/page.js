@@ -11,7 +11,7 @@ export default function Page() {
       scoreToPassLevel={3}
       unlock={"projects"}
       challengeHint={
-        "You need to hit the enemy 3 times. be carefull not to to kill the worior"
+        "You need to hit the enemy 3 times to unlock porojects section. be carefull not to to kill the worior"
       }
       levelBg={level2bg}
       levelTarget={levelTwoTargets}

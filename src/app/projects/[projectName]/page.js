@@ -4,16 +4,19 @@ import backgroundImage from "../../../assets/images/backgroundImage.png";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowLeft } from "iconsax-react";
+import { projectsInfo } from "@/data/projectsData";
 
-export default function Page(props) {
-  console.log(props);
+export default function Page({ params }) {
+  const project = projectsInfo.find(
+    (project) => project.name === params.projectName
+  );
 
   return (
     <div>
       <div className={styles.cover}>
         <Image src={backgroundImage} alt="cover" loading="lazy" />
         <div className={styles.fader}>
-          <h2>blindbox</h2>
+          <h2>{project.name}</h2>
           <div>
             <Link href={"/projects"}>
               <h4>
@@ -26,20 +29,17 @@ export default function Page(props) {
           <div className={styles.association}>
             <h3>
               Associated <span className={styles.small__text}>with </span>
-              <span className={styles.orange__text}>CEIT</span>
+              <span className={styles.orange__text}>{project.association}</span>
             </h3>
           </div>
           <div className={styles.content}>
             <h3>Brief</h3>
-            <p>
-              I’t simply an app where you can draw to get certain item in a box,
-              I’t simply an app where you can draw to get certain item in a box.
-              I’t simply an app where you can draw to get certain item in a box
-              I’t simply an app where you can draw to get certain item in a box
-              I’t simply an app where you can draw to get certain item in a box
-            </p>
-            <Image src={backgroundImage} alt="bag" loading="lazy" />
+            <p>{project.description}</p>
+            {/* <Image src={backgroundImage} alt="bag" loading="lazy" /> */}
           </div>
+          <button className={styles.launch__btn}>
+            <a href={project.link}>launch app</a>
+          </button>
         </div>
       </div>
     </div>

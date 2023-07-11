@@ -91,4 +91,14 @@
       margin-top: 2rem;
     }
   }
+
+  .launch__btn {
+    @include default-btn-styles;
+    margin-top: 2rem;
+
+    a {
+      text-decoration: none;
+      color: black;
+    }
+  }
 }

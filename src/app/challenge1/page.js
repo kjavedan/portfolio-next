@@ -8,7 +8,7 @@ export default function Page() {
     <GameField
       levelNumber={1}
       scoreToPassLevel={2}
-      challengeHint={"You need to hit the enemy 2 time."}
+      challengeHint={"You need to hit the enemy 2 time to unlock about me."}
       unlock={"about"}
       levelBg={level1Bg}
       levelTarget={levelOneTargets}

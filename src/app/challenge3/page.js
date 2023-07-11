@@ -10,7 +10,7 @@ export default function Page() {
       levelNumber={3}
       scoreToPassLevel={3}
       challengeHint={
-        "You need to hit the enemy 3 times. be carefull not to to kill the woriors"
+        "You need to hit the enemy 3 times to unlock contact. be carefull not to to kill the woriors"
       }
       unlock={"contact"}
       levelBg={level3bg}
