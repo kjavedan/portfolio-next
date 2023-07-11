@@ -45,13 +45,13 @@ export default function Header() {
 
   return (
     <div className={styles.nav}>
-      <div onClick={handleClick} className={isActive ? styles.active : " "}>
+      <div onClick={handleClick} className={isActive ? styles.active : ""}>
         {sound ? <VolumeMute /> : <VolumeMute variant="Broken" />}
       </div>
       <div onClick={handleMenuBtnClick} className={styles.menu__Btn}>
         <More />
       </div>
-      <div className={`${styles.menu} ${isMenu ? styles.isMenu : " "}`}>
+      <div className={`${styles.menu} ${isMenu ? styles.isMenu : ""}`}>
         <div className={styles.menu__close} onClick={handleCloseMenuBtn}>
           <CloseSquare />
         </div>
@@ -68,14 +68,14 @@ export default function Header() {
             </div>
           </Link>
           <div>
-            <Link href={level >= 1 ? "/about" : " "} className={styles.link}>
+            <Link href={level >= 1 ? "/about" : ""} className={styles.link}>
               {level >= 1 ? "🔓" : "🔒"}
               <h4>About</h4>
             </Link>
           </div>
           <div>
             <Link
-              href={level >= 1 ? "/challenge2" : " "}
+              href={level >= 1 ? "/challenge2" : ""}
               className={styles.link}
             >
               {level >= 1 ? "🔓" : "🔒"}
@@ -83,14 +83,14 @@ export default function Header() {
             </Link>
           </div>
           <div>
-            <Link href={level >= 2 ? "/projects" : " "} className={styles.link}>
+            <Link href={level >= 2 ? "/projects" : ""} className={styles.link}>
               {level >= 2 ? "🔓" : "🔒"}
               <h4>Projects</h4>
             </Link>
           </div>
           <div>
             <Link
-              href={level >= 2 ? "/challenge3" : " "}
+              href={level >= 2 ? "/challenge3" : ""}
               className={styles.link}
             >
               {level >= 2 ? "🔓" : "🔒"}
@@ -98,7 +98,7 @@ export default function Header() {
             </Link>
           </div>
           <div>
-            <Link href={level >= 3 ? "/contact" : " "} className={styles.link}>
+            <Link href={level >= 3 ? "/contact" : ""} className={styles.link}>
               {level >= 3 ? "🔓" : "🔒"}
               <h4>Contact me</h4>
             </Link>

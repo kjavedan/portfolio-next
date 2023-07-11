@@ -1,5 +1,3 @@
-"use client";
-
 import React, { useContext } from "react";
 import styles from "./styles.module.scss";
 import Link from "next/link";
@@ -7,7 +5,6 @@ import useSound from "use-sound";
 import clickSound from "../../assets/sounds/click.wav";
 import Experience from "../components/Experience";
 import { Canvas, useThree } from "@react-three/fiber";
-import { PerspectiveCamera } from "@react-three/drei";
 import { SoundContext } from "@/context/SoundContext";
 import { LevelContext } from "@/context/LevelContext";
 
@@ -19,18 +16,18 @@ export const CustomCamera = () => {
 };
 
 export default function Page() {
-  //CONTEXT
-
+  // CONTEXT
   const { sound } = useContext(SoundContext);
   const { level } = useContext(LevelContext);
 
-  //SOUND
+  // SOUND
   const [playClickSound] = useSound(clickSound);
 
-  //FUNCS
+  // FUNCS
   const handleClick = (link) => {
     sound && playClickSound();
   };
+
   return (
     <div className={styles.main}>
       <div className={styles.avatar}>
@@ -41,7 +38,7 @@ export default function Page() {
       </div>
       <div className={styles.content}>
         <div>
-          <h2>Well I’m Khaled.</h2>
+          <h2>Well I&apos;m Khaled.</h2>
           <p>nice to meet you. 😊</p>
         </div>
         <div className={styles.text__section}>
@@ -51,21 +48,21 @@ export default function Page() {
             Front-end Developer as you can see. good one though.😎
           </p>
           <p>
-            Currently I’m living in <b>United Arab Emirates.</b>
+            Currently I&apos;m living in <b>United Arab Emirates.</b>
           </p>
         </div>
 
         <div className={styles.text__section}>
           <h3> work </h3>
           <p>
-            I think it’s enough talking about myself let me show you the
+            I think it&apos;s enough talking about myself let me show you the
             projects I have done.
           </p>
         </div>
 
         <div className={styles.next__btn}>
-          <Link href={level >= 1 ? "/challenge2" : " "}>
-            <button onClick={handleClick}>Ok let's see</button>
+          <Link href={level >= 1 ? "/challenge2" : ""}>
+            <button onClick={handleClick}>Ok let&apos;s see</button>
           </Link>
         </div>
       </div>

@@ -60,8 +60,8 @@ export default function Page() {
       </div>
       <div className={styles.projects__container}>{projectsElements}</div>
       <div className={styles.next__btn}>
-        <Link href={level >= 2 ? "/challenge3" : " "}>
-          <button onClick={() => playClickSound()}>Ok let's see</button>
+        <Link href={level >= 2 ? "/challenge3" : ""}>
+          <button onClick={() => playClickSound()}>Ok let&apos;s see</button>
         </Link>
       </div>
     </div>
