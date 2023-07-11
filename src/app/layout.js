@@ -43,10 +43,6 @@ const griffy = Griffy({
   weight: "400",
   display: "swap",
 });
-export const metadata = {
-  title: "Khaled Javedan",
-  description: "khaled javedan portfolio",
-};
 
 export default function RootLayout({ children }) {
   return (

@@ -1,7 +1,7 @@
 import React from "react";
 import GameField from "../components/GameField";
 import levelOneTargets from "../../assets/images/levelOneTargets.png";
-import level1Bg from "../../assets/images/level1bg.png";
+import level1Bg from "../../assets/images/level1Bg.png";
 
 export default function page() {
   return (
