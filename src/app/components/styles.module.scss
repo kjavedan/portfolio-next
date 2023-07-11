@@ -155,7 +155,7 @@
     height: 100%;
     width: 100%;
     position: absolute;
-    z-index: 101;
+    z-index: 99;
 
     @include pc {
       width: 800px;

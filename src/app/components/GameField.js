@@ -50,7 +50,7 @@ export default function Page({
   const spriteSizeW = 123.8;
   const targetsSpriteFrame = 17;
 
-  const screenWidth = window.innerWidth >= 900 ? 900 : window.innerWidth;
+  // const screenWidth = window.innerWidth >= 900 ? 900 : window.innerWidth;
   const screenHeight = 400;
 
   const canvasRef = useRef(null);
@@ -73,6 +73,7 @@ export default function Page({
   const [ctx, setCtx] = useState("");
 
   //STATES
+  const [screenWidth, setScreenWidth] = useState(0);
   const [spriteFrame, setSpriteFrame] = useState(0);
   const [woriorOneSpriteFrame, setworiorOneSpriteFrame] =
     useState(woriorSpriteFrame);
@@ -152,6 +153,14 @@ export default function Page({
           spriteWidth,
           spriteHeight + 20
         );
+        handleParticles(
+          ctx,
+          spriteWidth,
+          spriteHeight,
+          objX2 + spriteWidth / 2,
+          objY2 + spriteHeight - 8,
+          particlesArray
+        );
       }
 
       //particals-------------------------------------
@@ -161,14 +170,6 @@ export default function Page({
         spriteHeight,
         objX + spriteWidth / 2,
         objY + spriteHeight - 8,
-        particlesArray
-      );
-      handleParticles(
-        ctx,
-        spriteWidth,
-        spriteHeight,
-        objX2 + spriteWidth / 2,
-        objY2 + spriteHeight - 8,
         particlesArray
       );
 
@@ -396,6 +397,8 @@ export default function Page({
     spriteWidth,
   ]);
 
+  // console.log(screenWidth);
+
   //useEffect (5) collision sprite frame switching
   useEffect(() => {
     let timeId;
@@ -432,6 +435,27 @@ export default function Page({
       unlockLevel(levelNumber);
     }
   }, [levelScore]);
+
+  //listining to screen resizing
+  useEffect(() => {
+    const updateWindowDimensions = () => {
+      const width = window.innerWidth >= 900 ? 900 : window.innerWidth;
+      setScreenWidth(width);
+      setBulletPostionX(screenWidth / 2 - bulletSpriteWidth + 20);
+    };
+    setBulletPostionX(screenWidth / 2 - bulletSpriteWidth + 20);
+
+    // Add event listener to update dimensions on window resize
+    window.addEventListener("resize", updateWindowDimensions);
+
+    // Initial call to set dimensions
+    updateWindowDimensions();
+    console.log("hi");
+    // Cleanup the event listener on component unmount
+    return () => {
+      window.removeEventListener("resize", updateWindowDimensions);
+    };
+  }, [ctx]);
 
   return (
     <div>
