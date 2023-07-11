@@ -94,7 +94,7 @@ export const projectsInfo = [
     description:
       "Fit Mentor is a personal web application humbly dedicated to sharing my passion for fitness and providing valuable insights for individuals seeking guidance. Through a collection of thoughtful blog posts, I aim to offer practical advice on workouts, nutrition, and overall well-being. The application is thoughtfully connected to my YouTube channel, where I strive to provide informative videos to supplement the written content. With a genuine desire to help others, Fit Mentor embraces multilingual functionality, ensuring that individuals from diverse backgrounds can access and benefit from the information. It is my humble goal to empower and inspire users on their fitness journeys, offering a user-friendly interface and a comprehensive library of articles and videos. Fit Mentor is here to support individuals of all levels, sharing knowledge and fostering a healthier lifestyle with humility and gratitude.",
     img: fit,
-    link: "https://jojofit.netlify.app/home",
+    link: "https://jojofit.netlify.app/",
   },
   {
     name: "portfolio",
