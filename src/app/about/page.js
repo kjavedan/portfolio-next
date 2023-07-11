@@ -1,3 +1,4 @@
+"use client";
 import React, { useContext } from "react";
 import styles from "./styles.module.scss";
 import Link from "next/link";
