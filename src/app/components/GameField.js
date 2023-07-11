@@ -22,7 +22,7 @@ import clickSound from "../../assets/sounds/click.wav";
 
 import useSound from "use-sound";
 
-export default function page({
+export default function Page({
   levelNumber,
   scoreToPassLevel,
   unlock,

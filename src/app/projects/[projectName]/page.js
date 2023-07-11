@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowLeft } from "iconsax-react";
 
-export default function page(props) {
+export default function Page(props) {
   console.log(props);
 
   return (

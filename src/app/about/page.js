@@ -1,4 +1,5 @@
 "use client";
+
 import React, { useContext } from "react";
 import styles from "./styles.module.scss";
 import Link from "next/link";
@@ -17,8 +18,9 @@ export const CustomCamera = () => {
   return null;
 };
 
-export default function page() {
+export default function Page() {
   //CONTEXT
+
   const { sound } = useContext(SoundContext);
   const { level } = useContext(LevelContext);
 

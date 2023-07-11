@@ -4,7 +4,7 @@ import levelTwoTargets from "../../assets/images/levelTwoTargets.png";
 import levelThreeWorior from "../../assets/images/woriors.png";
 import level3bg from "../../assets/images/level3bg.png";
 
-export default function page() {
+export default function Page() {
   return (
     <GameField
       levelNumber={3}

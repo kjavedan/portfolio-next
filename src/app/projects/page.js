@@ -12,7 +12,7 @@ import { LevelContext } from "@/context/LevelContext";
 import { useRouter } from "next/navigation";
 import projectsData from "@/data/projectsData";
 
-export default function page() {
+export default function Page() {
   //NAVIGATINO
   const router = useRouter();
 

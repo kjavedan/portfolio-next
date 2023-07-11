@@ -15,7 +15,7 @@ import {
   faGoogle,
 } from "@fortawesome/free-brands-svg-icons";
 
-export default function page() {
+export default function Page() {
   return (
     <div>
       <div className={styles.main}>
