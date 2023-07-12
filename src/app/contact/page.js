@@ -37,7 +37,7 @@ export default function Page() {
                 </a>
               </li>
               <li>
-                <a href="https://wa.me/00970502597949">
+                <a href="https://wa.me/+970502597949">
                   <FontAwesomeIcon className={styles.fa} icon={faWhatsapp} />
                   <span> - WhatsApp</span>
                 </a>
