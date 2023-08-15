@@ -68,7 +68,7 @@ export default function Page() {
         </div>
 
         <div className={styles.next__btn}>
-          <Link href={level >= 1 ? "/challenge2" : ""}>
+          <Link href={"/challenge2"}>
             <button onClick={handleClick}>Ok let&apos;s see</button>
           </Link>
         </div>
