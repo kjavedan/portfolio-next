@@ -15,7 +15,7 @@ export default function Home() {
         <h1>مَرْحَبًا Welcome</h1>
         <p>My name is <b>Khaled</b>, I am a software engineer who is specializes in web development.</p>
         <Link href={"/challenge1"}>
-          <button onClick={() => playClickSound()}>Let's go</button>
+          <button onClick={() => playClickSound()}>Continue</button>
         </Link>
       </div>
     </main>

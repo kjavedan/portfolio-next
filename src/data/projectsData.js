@@ -26,7 +26,7 @@ export default [
   {
     name: "chikrice",
     description:
-      "ChikRice is fitness tool that generates custom meal plans, workout plans for users",
+      "ChikRice is fitness tool that calculate BMR, generates custom meal plans, and workout plans for users",
     usedTech: "Vue.js",
     img: chikrice,
     link: "https://chikrice.com",
@@ -49,7 +49,7 @@ export default [
 
   {
     name: "other...",
-    description: "couple more",
+    description: "some small projects that showcase my learning journey",
     usedTech: "HTML, css, javascript, sass, ...",
     img: other,
     link: "https://khaled-javedan-portfolio.netlify.app/index.html",
