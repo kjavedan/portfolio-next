@@ -8,6 +8,8 @@ import swipeSound from "../../assets/sounds/swipe.wav";
 import muteSound from "../../assets/sounds/mute.wav";
 import unmuteSound from "../../assets/sounds/unmute.wav";
 import useSound from "use-sound";
+import Image from "next/image";
+import logo from '../../assets/images/KJ.png'
 
 export default function Header() {
   //CONTEXT
@@ -45,11 +47,16 @@ export default function Header() {
 
   return (
     <div className={styles.nav}>
-      <div onClick={handleClick} className={isActive ? styles.active : ""}>
-        {sound ? <VolumeMute /> : <VolumeMute variant="Broken" />}
-      </div>
-      <div onClick={handleMenuBtnClick} className={styles.menu__Btn}>
-        <More />
+      <Link href={'/'}>
+        <Image width={30} height={30} loading="lazy" src={logo} alt='logo' />
+      </Link>
+      <div className={styles.nav__logo}>
+        <div onClick={handleClick} className={isActive ? styles.active : ""}>
+          {sound ? <VolumeMute /> : <VolumeMute variant="Broken" />}
+        </div>
+        <div onClick={handleMenuBtnClick} className={styles.menu__Btn}>
+          <More />
+        </div>
       </div>
       <div className={`${styles.menu} ${isMenu ? styles.isMenu : ""}`}>
         <div className={styles.menu__close} onClick={handleCloseMenuBtn}>

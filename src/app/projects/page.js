@@ -5,20 +5,13 @@ import styles from "./styles.module.scss";
 import clickSound from "../../assets/sounds/click.wav";
 import useSound from "use-sound";
 import Link from "next/link";
-import Image from "next/image";
+  import Image from "next/image";
 import { ArrowRight } from "iconsax-react";
 import { SoundContext } from "@/context/SoundContext";
 import { LevelContext } from "@/context/LevelContext";
 import { useRouter } from "next/navigation";
-import projectsData, { projectsInfo } from "@/data/projectsData";
+import projectsData from "@/data/projectsData";
 
-export const generateStaticParams = () => {
-  return projectsInfo.map((project) => {
-    return {
-      projectName: project.name,
-    };
-  });
-};
 
 export default function Page() {
   //NAVIGATINO
@@ -34,7 +27,7 @@ export default function Page() {
   //FUNCS
   const handleClick = (link) => {
     sound && playClickSound();
-    router.push(`projects/${link}`);
+    window.location.href = link
   };
   const handleClickBtn = () => {
     sound && playClickSound();
@@ -44,11 +37,11 @@ export default function Page() {
   const projectsElements = projectsData.map((project, index) => (
     <div
       key={index}
-      onClick={() => handleClick(project.name)}
+      onClick={() => handleClick(project.link)}
       className={styles.project}
     >
       <div className={styles.image}>
-        <Image loading="lazy" src={project.img} alt={project.name} />
+        <Image width={'40px'} loading="lazy" src={project.img} alt={project.name} />
       </div>
       <div className={styles.content}>
         <div className={styles.title}>

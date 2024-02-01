@@ -12,10 +12,10 @@ export default function Home() {
   return (
     <main className={styles.main}>
       <div>
-        <h1>Welcome to my world</h1>
-        <p>I’m ? You can get to know me by passing the challenges.</p>
+        <h1>مَرْحَبًا Welcome</h1>
+        <p>My name is <b>Khaled</b>, I am a software engineer who is specializes in web development.</p>
         <Link href={"/challenge1"}>
-          <button onClick={() => playClickSound()}>start</button>
+          <button onClick={() => playClickSound()}>Let's go</button>
         </Link>
       </div>
     </main>

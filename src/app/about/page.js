@@ -1,4 +1,5 @@
 "use client";
+
 import React, { useContext } from "react";
 import styles from "./styles.module.scss";
 import Link from "next/link";
@@ -40,13 +41,13 @@ export default function Page() {
       </div>
       <div className={styles.content}>
         <div>
-          <h2>Well I&apos;m Khaled.</h2>
+          <h2>I&apos;m Khaled.</h2>
           <p>nice to meet you. 😊</p>
         </div>
         <div className={styles.text__section}>
           <h3>me </h3>
           <p>
-            <b>25 years old.</b> Studied Software Engineer, And then became a
+            <b>26 years old.</b> Studied Software Engineer, And then became a
             Front-end Developer as you can see. good one though.😎
           </p>
           <p>
