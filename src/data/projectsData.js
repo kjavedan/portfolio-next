@@ -32,19 +32,19 @@ export default [
     link: "https://chikrice.com",
   },
   {
-    name: "X55",
+    name: "Uniestate",
     description:
-      "X55 Is a live streaming platform for marble games",
-    usedTech: "Vue.js, Element UI",
+      "Uniestate is a realesteate landing page",
+    usedTech: "Vue.js, Unocss",
     img: x55,
-    link: "https://x55.com",
+    link: "https://uniestate.netlify.app",
   },
   {
-    name: "fit-mentor",
-    description: "This is a personal website where I write blogs about fitness",
-    usedTech: "React, MUI",
+    name: "Yingli",
+    description: "Yingli is a landing page for Yingli investment managment company",
+    usedTech: "Vue, Tailwind",
     img: fit,
-    link: "https://jojofit.netlify.app/",
+    link: "https://admin.chikrice.com/",
   },
 
   {
