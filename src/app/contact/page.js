@@ -31,7 +31,7 @@ export default function Page() {
           <div className={styles.links__container}>
             <ul>
               <li>
-                <a href="https://www.instagram.com/k.javedan/">
+                <a href="https://www.instagram.com/khaled_javedan/">
                   <FontAwesomeIcon className={styles.fa} icon={faInstagram} />
                   <span> - Instagram</span>
                 </a>
@@ -61,7 +61,7 @@ export default function Page() {
                 </a>
               </li>
               <li>
-                <a href="mailto:javedankhaled@gmail.com">
+                <a href="mailto:devkhaledjavdan@gmail.com">
                   <FontAwesomeIcon className={styles.fa} icon={faGoogle} />
                   <span> - Email</span>
                 </a>

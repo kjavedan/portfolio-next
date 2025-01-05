@@ -47,7 +47,7 @@ export default function Page() {
         <div className={styles.text__section}>
           <h3>me </h3>
           <p>
-            <b>26 years old.</b> Studied Software Engineer, And then became a
+            <b>27 years old.</b> Studied Software Engineer, And then became a
             Front-end Developer as you can see. good one though.😎
           </p>
           <p>
