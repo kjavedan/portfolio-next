@@ -10,7 +10,7 @@ import { Canvas, useThree } from "@react-three/fiber";
 import { SoundContext } from "@/context/SoundContext";
 import { LevelContext } from "@/context/LevelContext";
 import { ArrowRight } from "iconsax-react";
-import resume from "../../assets/cv/resume.pdf";
+
 export const CustomCamera = () => {
   const { camera } = useThree();
   camera.position.set(0, 0.2, 1.75); // Set the desired camera position
@@ -54,7 +54,12 @@ export default function Page() {
             Currently I&apos;m living in <b>United Arab Emirates.</b>
           </p>
 
-          <a download="resume" href={resume}>
+          <a
+            download="resume"
+            href={
+              "https://drive.google.com/file/d/1_ezIaKrFnt-K6mT1qnv_Md79MMrZ_PDx/view"
+            }
+          >
             Download resume
             <ArrowRight className={styles.arrow} size={"20"} />
           </a>
